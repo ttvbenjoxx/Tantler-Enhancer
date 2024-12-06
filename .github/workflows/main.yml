@@ -1,9 +1,12 @@
-name: Main Workflow
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - main  # Trigger this workflow on pushes to the main branch
+      - main # Run this workflow when pushing to the main branch
+
+permissions:
+  contents: write # Allows the workflow to create or modify branches
 
 jobs:
   build-and-deploy:
@@ -33,5 +36,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages  # This will create the branch if it doesn't exist
           publish_dir: dist
+          publish_branch: gh-pages # Creates and uses the gh-pages branch
